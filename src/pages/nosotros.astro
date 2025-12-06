@@ -2,71 +2,139 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Icon from '../components/Icons.astro';
 ---
 
-<Layout title="Sobre Nosotros | Eva Torres">
+<Layout title="Nuestra Historia | Eva Torres">
     <Header />
-    <main>
-        <section class="py-20 bg-eva-cream">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h1 class="text-6xl font-brand text-eva-green mb-6">Nuestra Historia</h1>
-                    <p class="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
-                        En <strong>Eva Torres Calzados Arahal</strong>, llevamos más de 15 años de experiencia siendo un referente en moda, calzado y belleza en Arahal, Sevilla. Nuestra historia comenzó con un sueño: ofrecer a nuestra comunidad un espacio donde encontrar calidad, variedad y un trato cercano.
-                    </p>
+    <main class="bg-eva-dark text-white overflow-x-hidden">
+
+        <section class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-4">
+            
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-eva-green rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-eva-gold rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+
+            <div class="relative z-10 text-center max-w-5xl mx-auto">
+                <span class="text-eva-gold tracking-[0.5em] uppercase text-sm font-bold animate-fade-in opacity-0" style="animation-delay: 0.2s;">Desde 2008</span>
+                
+                <h1 class="font-heading text-6xl md:text-8xl lg:text-9xl leading-none mt-6 mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    Pasión <span class="italic text-eva-gold font-serif">&</span> Alma
+                </h1>
+
+                <div class="relative inline-block group opacity-0 animate-scale-in" style="animation-delay: 0.8s;">
+                    <div class="absolute -inset-4 border border-eva-gold/30 rounded-sm scale-95 group-hover:scale-105 transition-transform duration-700 ease-out"></div>
+                    
+                    <div class="relative overflow-hidden w-full max-w-md mx-auto shadow-2xl shadow-black/50 rounded-sm">
+                        <img 
+                            src="https://imgur.com/ISYXi1A.jpg" 
+                            alt="Interior Tienda Eva Torres" 
+                            class="w-full h-auto object-cover transform transition-transform duration-1000 group-hover:scale-110"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-tr from-eva-dark/40 to-transparent mix-blend-overlay"></div>
+                    </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-12 mb-20">
-                    <div class="bg-white p-12 shadow-lg border-t-4 border-eva-green relative mt-8">
-                        <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-eva-green text-white w-16 h-16 flex items-center justify-center rounded-full font-bold text-2xl border-4 border-eva-cream">01</div>
-                        <h3 class="text-3xl font-serif text-eva-green mt-6 mb-4 text-center">Orígenes y Tradición</h3>
-                        <p class="text-gray-600 text-center leading-relaxed">
-                            Fundada por Eva Torres, este negocio nació como un pequeño local familiar en la Barriada Francisco de Quevedo. Con esfuerzo y dedicación, evolucionamos para convertirnos en un punto de encuentro imprescindible en el barrio.
-                        </p>
+                <p class="mt-12 text-xl md:text-2xl font-light text-gray-300 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-in-up" style="animation-delay: 1.2s;">
+                    En el corazón de Arahal, creamos un espacio donde la moda cobra vida y el trato humano es la única tendencia que nunca pasa.
+                </p>
+            </div>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-eva-gold">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+            </div>
+        </section>
+
+        <section class="py-32 bg-white text-eva-dark relative">
+            <div class="container mx-auto px-6 max-w-4xl">
+                
+                <div class="space-y-24">
+                    <div class="flex flex-col md:flex-row items-start gap-8">
+                        <div class="md:w-1/3 text-eva-gold font-brand text-6xl opacity-80 sticky top-32">
+                            01.
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-4xl font-heading mb-6">El Comienzo</h3>
+                            <p class="text-lg text-gray-600 leading-relaxed font-light">
+                                En la <strong>Barriada Francisco de Quevedo</strong>, Eva Torres abrió sus puertas no solo como una tienda, sino como una declaración de intenciones. Queríamos demostrar que el comercio de barrio podía ofrecer la misma exclusividad y calidad que las grandes boutiques de la capital, pero con la calidez de quien te saluda por tu nombre.
+                            </p>
+                        </div>
                     </div>
-                    <div class="bg-white p-12 shadow-lg border-t-4 border-eva-green relative mt-8">
-                        <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-eva-green text-white w-16 h-16 flex items-center justify-center rounded-full font-bold text-2xl border-4 border-eva-cream">02</div>
-                        <h3 class="text-3xl font-serif text-eva-green mt-6 mb-4 text-center">Evolución</h3>
-                        <p class="text-gray-600 text-center leading-relaxed">
-                            A lo largo de los años, hemos ampliado nuestro catálogo para incluir no solo calzado, sino también ropa de mujer, complementos y perfumería. Siempre priorizando las necesidades de nuestros clientes.
-                        </p>
+
+                    <div class="w-full h-px bg-gray-200"></div>
+
+                    <div class="flex flex-col md:flex-row items-start gap-8">
+                        <div class="md:w-1/3 text-eva-gold font-brand text-6xl opacity-80 sticky top-32">
+                            02.
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-4xl font-heading mb-6">La Evolución</h3>
+                            <p class="text-lg text-gray-600 leading-relaxed font-light">
+                                Escuchar es nuestro secreto. Cada prenda que ves en nuestros percheros está ahí porque alguna vez nos contaste qué necesitabas. Crecimos de ser una zapatería a ofrecer looks completos, porque entendimos que la elegancia es un conjunto, una actitud, y queríamos acompañarte en todo el proceso.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <div class="order-2 md:order-1 h-[600px]">
-                        <img src="https://imgur.com/ISYXi1A" alt="Tienda Eva Torres Moda" class="rounded-lg shadow-2xl w-full h-full object-cover">
+            </div>
+        </section>
+
+        <section class="py-32 bg-eva-cream relative overflow-hidden">
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row items-center gap-16 lg:gap-24">
+
+                    <div class="md:w-1/2 relative group">
+                        <div class="absolute -left-12 top-1/2 -translate-y-1/2 text-[12rem] lg:text-[18rem] font-heading text-white font-bold leading-none select-none pointer-events-none opacity-60 z-0 transition-transform duration-700 group-hover:translate-x-4">
+                            EVA
+                        </div>
+
+                        <div class="absolute inset-0 border-2 border-eva-gold/20 translate-x-4 translate-y-4 z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+
+                        <div class="relative z-10 overflow-hidden rounded-sm shadow-2xl">
+                            <img 
+                                src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=800&auto=format&fit=crop" 
+                                alt="Detalle Moda Elegante Eva Torres" 
+                                class="w-full h-[600px] object-cover grayscale-[10%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                            >
+                        </div>
                     </div>
-                    <div class="order-1 md:order-2">
-                        <h2 class="text-5xl font-brand text-eva-green mb-8">Valores que nos definen</h2>
-                        <ul class="space-y-8">
-                            <li class="flex gap-4">
-                                <div class="text-eva-gold shrink-0 mt-1"><Icon name="check" class="w-8 h-8" /></div>
-                                <div>
-                                    <strong class="text-eva-dark text-xl block mb-2 font-serif">Compromiso con la Calidad</strong>
-                                    <span class="text-gray-600 leading-relaxed">Seleccionamos cuidadosamente cada marca y producto para garantizar que te llevas a casa durabilidad, confort y estilo en cada prenda.</span>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <div class="text-eva-gold shrink-0 mt-1"><Icon name="check" class="w-8 h-8" /></div>
-                                <div>
-                                    <strong class="text-eva-dark text-xl block mb-2 font-serif">Atención Personalizada</strong>
-                                    <span class="text-gray-600 leading-relaxed">No somos una franquicia impersonal. Te asesoramos personalmente, te ayudamos con las tallas y te sugerimos combinaciones para que encuentres exactamente lo que buscas.</span>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <div class="text-eva-gold shrink-0 mt-1"><Icon name="check" class="w-8 h-8" /></div>
-                                <div>
-                                    <strong class="text-eva-dark text-xl block mb-2 font-serif">Comercio Local</strong>
-                                    <span class="text-gray-600 leading-relaxed">Somos parte de Arahal. Participamos activamente en eventos locales y apoyamos nuestra comunidad para mantener vivo el comercio de barrio.</span>
-                                </div>
-                            </li>
-                        </ul>
+
+                    <div class="md:w-1/2 text-left">
+                        <div class="max-w-xl">
+                            <h2 class="text-eva-gold uppercase tracking-[0.2em] font-bold mb-8 text-sm flex items-center gap-4">
+                                <span class="w-12 h-px bg-eva-gold"></span> Nuestra Filosofía
+                            </h2>
+                            <p class="text-4xl md:text-5xl lg:text-6xl font-heading text-eva-dark leading-tight mb-10">
+                                "La moda no es sobre la ropa. Es sobre <span class="text-eva-green italic relative inline-block">la mujer<span class="absolute bottom-2 left-0 w-full h-3 bg-eva-gold/20 -z-10"></span></span> que la lleva."
+                            </p>
+                            <p class="text-gray-600 text-lg font-light mb-12 leading-relaxed">
+                                Creemos en el poder de sentirte segura. Por eso, nuestro asesoramiento va más allá de la talla; buscamos conectar con tu estilo de vida y resaltar tu belleza natural.
+                            </p>
+                            <a href="/contacto" class="group inline-flex items-center gap-4 bg-eva-dark text-white px-10 py-4 uppercase tracking-[0.2em] text-xs font-bold hover:bg-eva-gold transition-all shadow-xl rounded-sm">
+                                <span>Ven a conocernos</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-hover:translate-x-1 transition-transform">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
+
     </main>
     <Footer />
 </Layout>
+
+<style>
+    /* Animaciones CSS personalizadas */
+    .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+    .animate-fade-in-up { animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+    .animate-scale-in { animation: scaleIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); filter: blur(10px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+</style>

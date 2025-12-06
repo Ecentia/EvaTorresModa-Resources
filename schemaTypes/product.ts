@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 
-export default defineType({
+// CORRECCIÓN: Usamos export const
+export const product = defineType({
   name: 'product',
   title: 'Productos',
   type: 'document',
@@ -38,14 +39,13 @@ export default defineType({
       to: [{ type: 'category' }],
       group: 'details',
     }),
-    // CAMPO CARACTERÍSTICAS: se eliminó 'layout: grid'
+    // CARACTERÍSTICAS: Opciones de layout eliminadas para estabilidad
     defineField({
         name: 'features',
         title: 'Características Clave (Iconos)',
         type: 'array',
         of: [{ type: 'string' }],
         options: {
-          // El diseño 'grid' fue eliminado, ahora usa el layout por defecto
           list: [
             { title: 'Envío Gratis', value: 'shipping' },
             { title: 'Hecho en España', value: 'spain' },
@@ -56,15 +56,12 @@ export default defineType({
         },
         group: 'details',
       }),
+    // TALLAS: Opciones de layout eliminadas para estabilidad
     defineField({
       name: 'sizes',
       title: 'Tallas',
       type: 'array',
       of: [{ type: 'string' }],
-      options: { 
-        // El layout 'tags' fue eliminado, ahora usa el layout por defecto
-        // layout: 'tags' 
-      },
       group: 'details',
     }),
     defineField({
@@ -79,7 +76,7 @@ export default defineType({
       title: 'Galería',
       type: 'array',
       of: [{ type: 'image' }],
-      options: { layout: 'grid' }, // Se mantiene grid aquí, ya que suele funcionar para galerías.
+      options: { layout: 'grid' },
       group: 'media',
     }),
     defineField({
