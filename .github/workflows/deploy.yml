@@ -3,16 +3,14 @@ name: Deploy Astro to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    
-    # --- ¡ESTE BLOQUE DEBE ESTAR AQUÍ! ---
+  
     permissions:
-      contents: write # Permite al token escribir en la rama gh-pages
-    # ------------------------------------
+      contents: write 
 
     steps:
       # 1. Checkout del código
@@ -21,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0 
           
-      # 2. Configurar Node.js (SIN CACHÉ para evitar el error de lockfile)
+      # 2. Configurar Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -36,7 +34,7 @@ jobs:
           npm install
           npm run build
       
-      # 4. Despliegue en la rama gh-pages
+    
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
