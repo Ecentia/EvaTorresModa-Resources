@@ -26,7 +26,7 @@ export default defineConfig({
       dataset: DATASET,
       useCdn: false,
       apiVersion: '2024-03-01',
-      studioBasePath: '/admin', 
+      //studioBasePath: '/admin', 
     }),
   ],
 
