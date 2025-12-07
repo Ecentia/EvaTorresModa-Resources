@@ -3,18 +3,13 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 
-// 🌍 Capturamos las variables de entorno
-const PROJECT_ID = import.meta.env.PUBLIC_SANITY_PROJECT_ID
-const DATASET = import.meta.env.PUBLIC_SANITY_DATASET
-
 export default defineConfig({
   name: 'default',
-  title: 'Eva Torres Moda', // 🎀 Título más bonito
+  title: 'Eva Torres Moda',
 
-  projectId: PROJECT_ID,
-  dataset: DATASET,
+  projectId: '9x7itotf',
+  dataset: 'production',
 
-  // ✅ ESTA ES LA CLAVE PARA QUE NO DE EL ERROR "TOOL NOT FOUND"
   basePath: '/admin', 
 
   plugins: [structureTool(), visionTool()],
