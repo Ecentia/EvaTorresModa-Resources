@@ -4,8 +4,7 @@ export default defineType({
   name: 'featuredCategories',
   title: 'Configuración de Portada',
   type: 'document',
-  // Icono de casita para el menú
-  icon: () => '🏠', 
+  icon: () =>  '🏠',
   fields: [
     defineField({
       name: 'category1',
@@ -29,14 +28,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
   ],
-  // --- AQUÍ ARREGLAMOS LA VISUALIZACIÓN ---
   preview: {
     select: {
-      // Seleccionamos un campo cualquiera (el tipo de documento) para activar el prepare
+      // Seleccionamos _type solo para tener algo que seleccionar
       _type: '_type'
     },
-    // Usamos esta sintaxis exacta para evitar errores de compilación
-    prepare() {
+    // CORRECCIÓN: Usamos 'prepare:' seguido de una función explícita
+    prepare: () => {
       return {
         title: 'Gestión de Portada',
         subtitle: 'Elige aquí las 3 categorías principales'

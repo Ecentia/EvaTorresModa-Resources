@@ -1,6 +1,7 @@
 import category from './category'
-import {product} from './product'
 import featuredCategories from './featuredCategories'
+import product from './product' // Ahora importamos por defecto (sin llaves)
+
 
 export const schemaTypes = [
   category,

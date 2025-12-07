@@ -4,6 +4,7 @@ export default defineType({
   name: 'category',
   title: 'Categorías',
   type: 'document',
+  icon: () => '🏷️', // ✨ Icono de etiqueta
   fields: [
     defineField({
       name: 'name',

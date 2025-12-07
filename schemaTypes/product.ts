@@ -1,14 +1,14 @@
 import { defineField, defineType } from 'sanity'
 
-// CORRECCIÓN: Usamos export const
-export const product = defineType({
+export default defineType({
   name: 'product',
   title: 'Productos',
   type: 'document',
+  icon: () => '👗', // ✨ Icono de vestido
   groups: [
-    { name: 'details', title: 'Detalles Principales' },
-    { name: 'media', title: 'Multimedia' },
-    { name: 'content', title: 'Contenido' },
+    { name: 'details', title: 'Detalles 📝' },
+    { name: 'media', title: 'Fotos 📸' },
+    { name: 'content', title: 'Descripción 📄' },
   ],
   fields: [
     defineField({
@@ -39,24 +39,22 @@ export const product = defineType({
       to: [{ type: 'category' }],
       group: 'details',
     }),
-    // CARACTERÍSTICAS: Opciones de layout eliminadas para estabilidad
     defineField({
-        name: 'features',
-        title: 'Características Clave (Iconos)',
-        type: 'array',
-        of: [{ type: 'string' }],
-        options: {
-          list: [
-            { title: 'Envío Gratis', value: 'shipping' },
-            { title: 'Hecho en España', value: 'spain' },
-            { title: 'Piel Genuina', value: 'leather' },
-            { title: 'Comodidad Extra', value: 'comfort' },
-            { title: 'Diseño Exclusivo', value: 'exclusive' },
-          ],
-        },
-        group: 'details',
-      }),
-    // TALLAS: Opciones de layout eliminadas para estabilidad
+      name: 'features',
+      title: 'Características (Iconos)',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: '🚚 Envío Gratis', value: 'shipping' },
+          { title: '🇪🇸 Hecho en España', value: 'spain' },
+          { title: '🧶 Piel Genuina', value: 'leather' },
+          { title: '☁️ Comodidad Extra', value: 'comfort' },
+          { title: '✨ Diseño Exclusivo', value: 'exclusive' },
+        ],
+      },
+      group: 'details',
+    }),
     defineField({
       name: 'sizes',
       title: 'Tallas',
