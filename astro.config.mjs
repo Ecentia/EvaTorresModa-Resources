@@ -12,7 +12,7 @@ const PROJECT_ID = process.env.PUBLIC_SANITY_PROJECT_ID || env.PUBLIC_SANITY_PRO
 const DATASET = process.env.PUBLIC_SANITY_DATASET || env.PUBLIC_SANITY_DATASET;
 
 export default defineConfig({
-  site: 'https://www.evatorresmoda.com',
+  site: 'https://evatorresmoda.com',
   
   
   output: 'static',
