@@ -1,7 +1,6 @@
+
 ---
-// src/pages/admin/[...slug].astro
-export const prerender = false; // IMPORTANTE: El studio debe renderizarse bajo demanda (SSR) o cliente, pero 'prerender = true' puede dar problemas con rutas dinámicas si no generas static paths para todo. Si es SPA, false suele ser mejor o usar output: 'server'.
-// Si usas output: 'static' en tu astro.config, mantén prerender = true, pero asegúrate de que solo renderice el shell.
+export const prerender = false; 
 
 import StudioWrapper from '../../components/Studio';
 ---
@@ -12,7 +11,6 @@ import StudioWrapper from '../../components/Studio';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin | Eva Torres</title>
     <style>
-      /* Reseteo básico para que el Studio ocupe toda la pantalla */
       html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
     </style>
   </head>

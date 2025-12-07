@@ -5,7 +5,6 @@ import react from '@astrojs/react';
 import svelte from '@astrojs/svelte';
 import sanity from '@sanity/astro';
 import { loadEnv } from "vite";
-// 1. IMPORTAMOS EL ADAPTADOR DE VERCEL
 import vercel from '@astrojs/vercel';
 
 const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), "");
@@ -16,9 +15,8 @@ const DATASET = process.env.PUBLIC_SANITY_DATASET || env.PUBLIC_SANITY_DATASET;
 export default defineConfig({
   site: 'https://evatorresmoda.com',
   
-  output: 'static', // Esto está bien, el adaptador manejará las páginas híbridas (SSR)
+  output: 'hybrid',
 
-  // 2. AÑADIMOS EL ADAPTADOR AQUÍ
   adapter: vercel(),
 
   integrations: [
@@ -30,7 +28,7 @@ export default defineConfig({
       dataset: DATASET,
       useCdn: false,
       apiVersion: '2024-03-01',
-      // studioBasePath: '/admin', 
+      studioBasePath: '/admin',
     }),
   ],
 
