@@ -15,7 +15,7 @@ const DATASET = process.env.PUBLIC_SANITY_DATASET || env.PUBLIC_SANITY_DATASET;
 export default defineConfig({
   site: 'https://evatorresmoda.com',
   
-  output: 'hybrid',
+  output: 'static',
 
   adapter: vercel(),
 
