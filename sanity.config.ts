@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'Eva Torres Moda',
 
-  projectId: '9x7itotf',
+  projectId: 'kp5heflq',
   dataset: 'production',
 
   basePath: '/admin', 
