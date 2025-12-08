@@ -1,5 +1,5 @@
 ---
-
+// 1. OBLIGAMOS a que esta página se genere en el servidor en cada visita
 export const prerender = false;
 
 import Layout from '../layouts/Layout.astro';
@@ -9,7 +9,6 @@ import Icon from '../components/Icons.astro';
 import { sanityClient } from "sanity:client";
 import { urlFor } from '../utils/sanity';
 
-// Definición de tipo para las categorías en la portada
 interface Category {
     id: string; 
     name: string;
@@ -17,17 +16,22 @@ interface Category {
 }
 
 let categories: Category[] = [];
+
 try {
-    const query = `*[_type == "category" && isMain == true] | order(_updatedAt desc)[0...3]{
+    // 2. SOLUCIÓN CLAVE: Añadimos '| order(_updatedAt desc)'
+    // Esto asegura que si editas una categoría, esta suba a la primera posición
+    // y entre dentro del límite [0...3].
+    const query = `*[_type == "category" && isMain == true] | order(_updatedAt desc) [0...3] {
         "id": slug.current,
         name,
         coverImage
     }`;
+    
     categories = await sanityClient.fetch(query);
+
 } catch (e) {
     console.error("Error conectando con Sanity en Index:", e);
 }
----
 ---
 
 <Layout title="Eva Torres | Moda y Calzados en Arahal">
