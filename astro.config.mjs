@@ -9,13 +9,13 @@ import vercel from '@astrojs/vercel';
 
 const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), "");
 
-const PROJECT_ID = process.env.PUBLIC_SANITY_PROJECT_ID || env.PUBLIC_SANITY_PROJECT_ID;
+const PROJECT_ID = process.env.PUBLIC_SANITY_PROJECT_ID || env.PUBLIC_SANITY_PROJECT_ID ;
 const DATASET = process.env.PUBLIC_SANITY_DATASET || env.PUBLIC_SANITY_DATASET;
 
 export default defineConfig({
   site: 'https://evatorresmoda.com',
   
-  output: 'static',
+  output: 'server',
 
   adapter: vercel(),
 
