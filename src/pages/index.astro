@@ -1,6 +1,4 @@
 ---
-
-
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -9,7 +7,7 @@ import { sanityClient } from "sanity:client";
 import { urlFor } from '../utils/sanity';
 
 interface Category {
-    id: string; 
+    id: string;
     name: string;
     coverImage: any;
 }
@@ -17,22 +15,26 @@ interface Category {
 let categories: Category[] = [];
 
 try {
-    // 2. SOLUCIÓN CLAVE: Añadimos '| order(_updatedAt desc)'
-    // Esto asegura que si editas una categoría, esta suba a la primera posición
-    // y entre dentro del límite [0...3].
-    const query = `*[_type == "category" && isMain == true] | order(_updatedAt desc) [0...3] {
-        "id": slug.current,
-        name,
-        coverImage
+    // CORRECCIÓN: Consultamos el documento de configuración 'featuredCategories'
+    // Usamos '->' para expandir la referencia y obtener los datos reales (slug, nombre, imagen)
+    const query = `*[_type == "featuredCategories"][0]{
+        category1->{ "id": slug.current, name, coverImage },
+        category2->{ "id": slug.current, name, coverImage },
+        category3->{ "id": slug.current, name, coverImage }
     }`;
-    
-    categories = await sanityClient.fetch(query);
+
+    const result = await sanityClient.fetch(query);
+
+    if (result) {
+        // Construimos el array manualmente con las 3 categorías seleccionadas
+        // El .filter(Boolean) elimina huecos si alguna categoría no se ha seleccionado aún
+        categories = [result.category1, result.category2, result.category3].filter(Boolean);
+    }
 
 } catch (e) {
     console.error("Error conectando con Sanity en Index:", e);
 }
 ---
-
 <Layout title="Eva Torres | Moda y Calzados en Arahal">
 	<Header />
 	<main>
