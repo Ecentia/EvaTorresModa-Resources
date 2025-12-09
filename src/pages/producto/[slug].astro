@@ -1,4 +1,7 @@
 ---
+// 1. OBLIGATORIO PARA SITEMAP: Renderizado estático
+export const prerender = true;
+
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -23,22 +26,36 @@ const query = `*[_type == "product" && slug.current == $slug][0]{
   image,
   gallery,
   features,
-  "categoryName": category->title
+  "categoryName": category->name
 }`;
 
 const product = await sanityClient.fetch(query, { slug });
 
 if (!product) return Astro.redirect('/404');
 
-const featureMap: Record<string, { icon: string, label: string }> = {
+// 2. SOLUCIÓN ERROR TYPESCRIPT:
+// Definimos explícitamente qué strings son válidos para el icono
+type ValidIcon = "flag-spain" | "award" | "shoe" | "dress" | "ruler" | "whatsapp" | "facebook" | "map" | "phone" | "clock" | "email" | "check" | "store" | "star" | "send" | "bear" | "search" | "filter" | "sort" | "arrow-right";
+
+// Tipamos el mapa con 'ValidIcon' en lugar de un string genérico
+const featureMap: Record<string, { icon: ValidIcon, label: string }> = {
     spain: { icon: 'flag-spain', label: 'Hecho en España' },
     leather: { icon: 'award', label: 'Piel Genuina' },
     comfort: { icon: 'shoe', label: 'Comodidad Extra' },
     exclusive: { icon: 'dress', label: 'Diseño Exclusivo' },
 };
+
+// 3. SEO DINÁMICO:
+// Preparamos la descripción e imagen para compartir
+const seoDescription = `Compra ${product.name}. ${product.categoryName ? 'Categoría: ' + product.categoryName : ''}. Moda exclusiva y calidad garantizada en Eva Torres Arahal.`;
+const seoImage = product.image ? urlFor(product.image).width(1200).height(630).url() : undefined;
 ---
 
-<Layout title={`${product.name} | Eva Torres`}>
+<Layout 
+    title={`${product.name} | Eva Torres`}
+    description={seoDescription}
+    image={seoImage}
+>
     <Header />
     <main class="bg-white relative">
         <div class="container mx-auto px-4 py-6 border-b border-gray-100">

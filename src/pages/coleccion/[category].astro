@@ -1,12 +1,11 @@
 ---
+export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Icon from '../../components/Icons.astro';
 import { sanityClient } from "sanity:client";
 import { urlFor } from '../../utils/sanity';
 
-// OBLIGATORIO para rutas dinámicas
 export async function getStaticPaths() {
   const categories = await sanityClient.fetch(`*[_type == "category"]{
     "slug": slug.current,

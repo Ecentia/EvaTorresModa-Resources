@@ -5,9 +5,17 @@ import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
 	title: string;
+    description?: string; // Opcional
+    image?: string;       // Opcional
 }
 
-const { title } = Astro.props;
+const { 
+    title, 
+    description = "Tienda de moda, calzados y complementos en Arahal. Ropa de mujer, zapatos de calidad y belleza. Atención personalizada desde 2008.", 
+    image = "https://evatorresmoda.com/favicon.svg" 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -20,16 +28,15 @@ const { title } = Astro.props;
 		
 		<title>{title} | Eva Torres Moda</title>
 
-		<meta name="description" content="Tienda de moda, calzados y complementos en Arahal. Ropa de mujer, zapatos de calidad y belleza. Atención personalizada desde 2008." />
-		
+		<meta name="description" content={description} />
 		<meta name="keywords" content="ropa mujer Arahal, calzados Sevilla, complementos moda, bolsos, perfumes, Eva Torres, tienda Arahal" />
 
-		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+		<link rel="canonical" href={canonicalURL} />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content="Moda, calzado y belleza en Arahal. Tu tienda de confianza." />
-		<meta property="og:image" content="https://evatorresmoda.com/favicon.svg" />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:site_name" content="Eva Torres Moda" />
 		<meta property="og:locale" content="es_ES" />
