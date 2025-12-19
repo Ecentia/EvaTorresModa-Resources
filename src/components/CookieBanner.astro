@@ -23,20 +23,31 @@
     const rejectBtn = document.getElementById('reject-cookies');
 
     // Comprobar si ya hay una decisión guardada
-    if (!localStorage.getItem('cookiesAccepted')) {
-        // Mostrar banner con un pequeño retraso para efecto suave
+    if (!localStorage.getItem('cookiesAccepted') && banner) {
+        // Mostrar banner con un pequeño retraso
         setTimeout(() => {
             banner.classList.remove('translate-y-full');
         }, 1000);
     }
 
-    acceptBtn.addEventListener('click', () => {
-        localStorage.setItem('cookiesAccepted', 'true');
-        banner.classList.add('translate-y-full');
-    });
+    // Usamos 'if (acceptBtn)' para asegurar que no es null antes de añadir el listener
+    if (acceptBtn && banner) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            banner.classList.add('translate-y-full');
+            
+            // Ahora TypeScript reconocerá esta función gracias al cambio en env.d.ts
+            if (typeof window.loadGoogleAnalytics === 'function') {
+                window.loadGoogleAnalytics();
+            }
+        });
+    }
 
-    rejectBtn.addEventListener('click', () => {
-        localStorage.setItem('cookiesAccepted', 'false');
-        banner.classList.add('translate-y-full');
-    });
+    // Lo mismo para el botón de rechazar
+    if (rejectBtn && banner) {
+        rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'false');
+            banner.classList.add('translate-y-full');
+        });
+    }
 </script>

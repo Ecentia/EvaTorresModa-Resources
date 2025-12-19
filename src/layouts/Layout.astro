@@ -1,18 +1,18 @@
 ---
-import '../styles/global.css';
-import Icon from '../components/Icons.astro';
-import CookieBanner from '../components/CookieBanner.astro';
+import "../styles/global.css";
+import Icon from "../components/Icons.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 
 interface Props {
 	title: string;
-    description?: string; // Opcional
-    image?: string;       // Opcional
+	description?: string; // Opcional
+	image?: string; // Opcional
 }
 
-const { 
-    title, 
-    description = "Tienda de moda, calzados y complementos en Arahal. Ropa de mujer, zapatos de calidad y belleza. Atención personalizada desde 2008.", 
-    image = "https://evatorresmoda.com/favicon.svg" 
+const {
+	title,
+	description = "Tienda de moda, calzados y complementos en Arahal. Ropa de mujer, zapatos de calidad y belleza. Atención personalizada desde 2008.",
+	image = "https://evatorresmoda.com/favicon.svg",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -25,11 +25,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<title>{title} | Eva Torres Moda</title>
 
 		<meta name="description" content={description} />
-		<meta name="keywords" content="ropa mujer Arahal, calzados Sevilla, complementos moda, bolsos, perfumes, Eva Torres, tienda Arahal" />
+		<meta
+			name="keywords"
+			content="ropa mujer Arahal, calzados Sevilla, complementos moda, bolsos, perfumes, Eva Torres, tienda Arahal"
+		/>
 
 		<link rel="canonical" href={canonicalURL} />
 
@@ -41,72 +44,114 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta property="og:site_name" content="Eva Torres Moda" />
 		<meta property="og:locale" content="es_ES" />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+			rel="stylesheet"
+		/>
 
 		<script type="application/ld+json">
-		{
-		"@context": "https://schema.org",
-		"@type": "ClothingStore",
-		"name": "Eva Torres Calzados y Complementos",
-		"image": [
-			"https://www.evatorresmoda.com/favicon.svg" 
-		],
-		"@id": "https://www.evatorresmoda.com",
-		"url": "https://www.evatorresmoda.com",
-		"telephone": "+34651688937",
-		"address": {
-			"@type": "PostalAddress",
-			"streetAddress": "Bda. Francisco de Quevedo, Bloque 22, Local C",
-			"addressLocality": "Arahal",
-			"addressRegion": "Sevilla",
-			"postalCode": "41600",
-			"addressCountry": "ES"
-		},
-		"geo": {
-			"@type": "GeoCoordinates",
-			"latitude": 37.2628, 
-			"longitude": -5.5467 
-		},
-		"openingHoursSpecification": [
 			{
-			"@type": "OpeningHoursSpecification",
-			"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-			"opens": "10:00",
-			"closes": "13:45"
-			},
-			{
-			"@type": "OpeningHoursSpecification",
-			"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-			"opens": "18:00",
-			"closes": "21:00"
-			},
-			{
-			"@type": "OpeningHoursSpecification",
-			"dayOfWeek": "Saturday",
-			"opens": "10:00",
-			"closes": "13:45"
+				"@context": "https://schema.org",
+				"@type": "ClothingStore",
+				"name": "Eva Torres Calzados y Complementos",
+				"image": ["https://www.evatorresmoda.com/favicon.svg"],
+				"@id": "https://www.evatorresmoda.com",
+				"url": "https://www.evatorresmoda.com",
+				"telephone": "+34651688937",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "Bda. Francisco de Quevedo, Bloque 22, Local C",
+					"addressLocality": "Arahal",
+					"addressRegion": "Sevilla",
+					"postalCode": "41600",
+					"addressCountry": "ES"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": 37.2628,
+					"longitude": -5.5467
+				},
+				"openingHoursSpecification": [
+					{
+						"@type": "OpeningHoursSpecification",
+						"dayOfWeek": [
+							"Monday",
+							"Tuesday",
+							"Wednesday",
+							"Thursday",
+							"Friday"
+						],
+						"opens": "10:00",
+						"closes": "13:45"
+					},
+					{
+						"@type": "OpeningHoursSpecification",
+						"dayOfWeek": [
+							"Monday",
+							"Tuesday",
+							"Wednesday",
+							"Thursday",
+							"Friday"
+						],
+						"opens": "18:00",
+						"closes": "21:00"
+					},
+					{
+						"@type": "OpeningHoursSpecification",
+						"dayOfWeek": "Saturday",
+						"opens": "10:00",
+						"closes": "13:45"
+					}
+				],
+				"sameAs": [
+					"https://www.facebook.com/evamaria.rodrigueztorres.9"
+				],
+				"priceRange": "$$"
 			}
-		],
-		"sameAs": [
-			"https://www.facebook.com/evamaria.rodrigueztorres.9"
-		],
-		"priceRange": "$$"
-		}
+		</script>
+		<script is:inline>
+			const GA_MEASUREMENT_ID = "G-NBE4F2LHY6";
+
+			window.loadGoogleAnalytics = function () {
+				if (window.gaLoaded) return; // Evitar doble carga
+
+				// 1. Cargar el script externo de Google
+				const script = document.createElement("script");
+				script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+				script.async = true;
+				document.head.appendChild(script);
+
+				// 2. Inicializar el dataLayer
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag("js", new Date());
+				gtag("config", GA_MEASUREMENT_ID);
+
+				window.gaLoaded = true;
+				console.log("Google Analytics cargado");
+			};
+
+			// Comprobar consentimiento al cargar la página
+			if (localStorage.getItem("cookiesAccepted") === "true") {
+				window.loadGoogleAnalytics();
+			}
 		</script>
 	</head>
-	<body class="flex flex-col min-h-screen">
-		<slot />
-        
-        <a 
-            href="https://wa.me/34651688937" 
-            target="_blank" 
-            class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20b858] text-white rounded-full shadow-2xl hover:scale-105 transition-transform duration-300 w-16 h-16 border-2 border-white flex items-center justify-center"
-            aria-label="Contactar por WhatsApp"
-        >
-            <Icon name="whatsapp" class="w-9 h-9 fill-current" />
-        </a>
-		<CookieBanner />
-	</body>
 </html>
+<body class="flex flex-col min-h-screen">
+	<slot />
+
+	<a
+		href="https://wa.me/34651688937"
+		target="_blank"
+		class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20b858] text-white rounded-full shadow-2xl hover:scale-105 transition-transform duration-300 w-16 h-16 border-2 border-white flex items-center justify-center"
+		aria-label="Contactar por WhatsApp"
+	>
+		<Icon name="whatsapp" class="w-9 h-9 fill-current" />
+	</a>
+	<CookieBanner />
+</body>
