@@ -9,7 +9,7 @@
   --color-eva-white: #ffffff;
 
   /* Tipografías */
-  --font-script: '', cursive;       /* SOLO para "Eva Torres" */
+  --font-script: 'Great Vibes', cursive;       /* SOLO para "Eva Torres" */
   --font-heading: 'Playfair Display', serif;   /* Para títulos de sección (Elegante y legible) */
   --font-body: 'Lato', sans-serif;             /* Para textos largos */
 }
