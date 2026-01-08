@@ -2,9 +2,9 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'category',
-  title: 'Categorías',
+  title: 'Categorías Principales',
   type: 'document',
-  icon: () => '🏷️', // ✨ Icono de etiqueta
+  icon: () => '🏷️',
   fields: [
     defineField({
       name: 'name',
@@ -19,6 +19,16 @@ export default defineType({
       options: { source: 'name' },
       validation: (Rule) => Rule.required(),
     }),
+    
+    // --- NUEVO: CONTROL DE GÉNERO ---
+    defineField({
+      name: 'enableGenderFilter',
+      title: '¿Activar filtro de Hombre/Mujer?',
+      description: 'Actívalo para ropa (se mostrarán los botones). Desactívalo para cosas como Belleza o Accesorios (se ocultarán).',
+      type: 'boolean',
+      initialValue: true,
+    }),
+
     defineField({
       name: 'description',
       title: 'Descripción Corta',

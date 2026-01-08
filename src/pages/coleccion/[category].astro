@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { sanityClient } from "sanity:client";
-import { urlFor } from '../../utils/sanity';
+import ProductBrowser from '../../components/ProductBrowser';
 
 export async function getStaticPaths() {
   const categories = await sanityClient.fetch(`*[_type == "category"]{
@@ -22,67 +22,64 @@ export async function getStaticPaths() {
 const { category } = Astro.params;
 const { categoryName, categoryDesc } = Astro.props;
 
-const query = `*[_type == "product" && category->slug.current == $category]{
-  name,
-  "slug": slug.current,
-  price,
-  image,
-  "categoryName": category->name
+// --- QUERY ACTUALIZADA ---
+// 1. Buscamos productos de esta categoría y traemos el nombre de su sección referenciada
+// 2. Traemos la configuración de la categoría (si activa filtros o no)
+const query = `{
+  "products": *[_type == "product" && category->slug.current == $category]{
+    name,
+    "slug": slug.current,
+    price,
+    image,
+    gender,
+    "sectionName": section->name 
+  },
+  "categorySettings": *[_type == "category" && slug.current == $category][0]{
+    enableGenderFilter
+  }
 }`;
 
-const products = await sanityClient.fetch(query, { category });
+const { products, categorySettings } = await sanityClient.fetch(query, { category });
+
+// Si no hay configuración definida, asumimos true por defecto (o false si prefieres)
+const enableGenderFilter = categorySettings?.enableGenderFilter !== false; 
 ---
 
 <Layout title={`${categoryName} | Colección Eva Torres`}>
     <Header />
-    <main class="bg-white">
+    <main class="bg-white min-h-screen">
         
         <section class="bg-eva-dark text-white pt-32 pb-16 relative overflow-hidden">
              <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
              <div class="container mx-auto px-4 relative z-10 text-center">
-                <span class="text-eva-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Colección</span>
-                <h1 class="text-5xl md:text-6xl font-serif mb-6">{categoryName}</h1>
-                {categoryDesc && <p class="text-eva-cream/80 max-w-2xl mx-auto font-light text-lg">{categoryDesc}</p>}
+                <span class="text-eva-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block animate-fade-in-up">Colección</span>
+                <h1 class="text-5xl md:text-6xl font-serif mb-6 animate-fade-in-up" style="animation-delay: 0.1s;">{categoryName}</h1>
+                {categoryDesc && (
+                    <p class="text-eva-cream/80 max-w-2xl mx-auto font-light text-lg animate-fade-in-up" style="animation-delay: 0.2s;">
+                        {categoryDesc}
+                    </p>
+                )}
              </div>
         </section>
 
-        <section class="py-16">
+        <section class="py-12 bg-white">
             <div class="container mx-auto px-4">
-                {products.length === 0 ? (
-                    <div class="text-center py-20 bg-gray-50 rounded-lg border border-dashed border-gray-200">
-                        <p class="text-gray-500 text-lg font-serif italic">No hay productos disponibles en esta categoría por el momento.</p>
-                        <a href="/coleccion" class="inline-block mt-6 text-eva-green font-bold hover:underline">Ver otras colecciones</a>
-                    </div>
-                ) : (
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-                        {products.map((product: any) => (
-                            <a href={`/producto/${product.slug}`} class="group block">
-                                <div class="relative overflow-hidden rounded-sm shadow-md aspect-[3/4] mb-6 bg-gray-100">
-                                    {product.image ? (
-                                        <img 
-                                            src={urlFor(product.image).width(600).height(800).url()} 
-                                            alt={product.name}
-                                            class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                                        />
-                                    ) : (
-                                        <div class="w-full h-full flex items-center justify-center text-gray-400">Sin foto</div>
-                                    )}
-                                    
-                                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <span class="bg-white text-eva-dark px-6 py-3 uppercase text-xs font-bold tracking-widest hover:bg-eva-gold hover:text-white transition transform translate-y-4 group-hover:translate-y-0 duration-300">
-                                            Ver Detalles
-                                        </span>
-                                    </div>
-                                </div>
-                                
-                                <div class="text-center">
-                                    <h3 class="text-xl font-serif text-eva-dark mb-2 group-hover:text-eva-green transition">{product.name}</h3>
-                                    {product.price && <p class="text-eva-gold font-bold">{product.price}</p>}
-                                </div>
-                            </a>
-                        ))}
+                
+                <ProductBrowser 
+                    client:load 
+                    products={products} 
+                    enableGenderFilter={enableGenderFilter}
+                />
+
+                {products.length === 0 && (
+                    <div class="text-center py-20 bg-gray-50 rounded-lg border border-dashed border-gray-200 mt-8">
+                        <p class="text-gray-500 text-lg font-serif italic">Esta colección está vacía por el momento.</p>
+                        <a href="/coleccion" class="inline-block mt-6 text-eva-green font-bold hover:underline">
+                            Ver otras colecciones
+                        </a>
                     </div>
                 )}
+
             </div>
         </section>
 
